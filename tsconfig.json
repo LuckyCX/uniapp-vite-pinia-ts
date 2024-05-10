@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": false,
+        "target": "esnext",
+        "useDefineForClassFields": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "strict": true,
+        "jsx": "preserve",
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        },
+        "lib": ["esnext", "dom"],
+        "types": ["@dcloudio/types", "pinia-plugin-persist-uni","node"]
+    },
+    "exclude": ["node_modules","dist"],
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
+}
