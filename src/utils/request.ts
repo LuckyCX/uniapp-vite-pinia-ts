@@ -78,6 +78,7 @@ function baseRequest(
             complete: (data) => {
                 // console.log(data, 'data');
                 // resolve(responseData);
+                console.log('怎么不走这里');
                 hideLoading();
             }
         }
@@ -89,19 +90,19 @@ function baseRequest(
 }
 
 const http = {
-    get: <T>(api: string, params?: any,showLoading?:boolean | false) =>
+    get: <T>(api: string, params?: any,showLoading?:boolean) =>
         baseRequest('GET', api, {
             // ...getCommonParams(),
             isLoading:showLoading,
             ...params
         }) as Http.Response<T>,
-    post: <T>(api: string, params: any) =>
+    post: <T>(api: string, params: any,showLoading?:boolean) =>
         baseRequest('POST', api, {
             // ...getCommonParams(),
             isLoading:showLoading,
             ...params
         }) as Http.Response<T>,
-    post_form: <T>(api: string, params: any) =>
+    post_form: <T>(api: string, params: any,showLoading?:boolean) =>
         baseRequest('POST', api, {
             // ...getCommonParams(),
             isLoading:showLoading,

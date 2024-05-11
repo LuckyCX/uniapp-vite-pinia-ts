@@ -11,7 +11,7 @@ export function showLoading(isLoading: boolean) {
 
 export function hideLoading() {
   loadingCount = loadingCount - 1;
-  if (loadingCount === 0) {
+  if (loadingCount <= 0) {
     uni.hideLoading();
   }
 }
