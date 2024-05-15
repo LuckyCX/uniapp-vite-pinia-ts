@@ -29,6 +29,7 @@ export default defineConfig({
                     '@/helper/pinia-auto-refs': ['useStore']
                 }
             ],
+            ignore: ['h'],
             exclude: ['createApp'],
             eslintrc: {
                 enabled: true
@@ -59,7 +60,7 @@ export default defineConfig({
         minify: 'terser',
         terserOptions: {
             compress: {
-                drop_console: false,
+                //drop_console: process.env.NODE_ENV !=='development',
             },
         },
     }

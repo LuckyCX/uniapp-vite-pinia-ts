@@ -89,6 +89,56 @@ function baseRequest(
     });
 }
 
+
+function baseFileRequest(
+    url: string,
+    file: any,
+    formData:object
+) {
+    return new Promise((resolve) => {
+        const requestPatams = {
+            url: apiBaseUrl + url,
+            timeout: 60*1000,
+            filePath:file.url,
+            formData,
+            success: (res: any) => {
+                console.log(res);
+                if (res.statusCode >= 200 && res.statusCode < 400) {
+
+                    let data = JSON.parse(res.data)
+
+                    if (data.code == 1 ) {
+                        // responseData = res.data;
+                        resolve(data)
+                    } else {
+                        reject({
+                            code: data.code,
+                            msg: data.msg
+                        });
+                    }
+                } else {
+                    reject({
+                        code: res.statusCode,
+                        msg: res.data.msg
+                    });
+                }
+            },
+            fail: () => {
+                reject({
+                    code: -1,
+                    msg: '网络不给力，请检查你的网络设置~'
+                });
+            },
+            complete: (data) => {
+                // console.log(data, 'data');
+                // resolve(responseData);
+                // hideLoading();
+            }
+        }
+        uni.uploadFile(requestPatams);
+    });
+}
+
 const http = {
     get: <T>(api: string, params?: any,showLoading?:boolean) =>
         baseRequest('GET', api, {
